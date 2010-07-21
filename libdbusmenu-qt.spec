@@ -17,13 +17,11 @@ URL:		http://people.canonical.com/~agateau/dbusmenu/index.html
 BuildRequires:	libqjson-devel
 BuildRequires:	qt4-devel
 BuildRequires:	cmake
-	
 
 %description
 This library provides a Qt implementation of the DBusMenu spec.
 
 #-----------------------------------------------------------------------
-
 
 %package -n	%{libname}
 Summary:	Qt implementation of the DBUSMenu Spec
@@ -37,10 +35,7 @@ Qt implementation of the DBUSMenu Spec
 %defattr(-,root,root)
 %{_libdir}/libdbusmenu-qt.so.%{major}*
 
-
-
 #---------------------------------------------------------------------
-
 
 %package -n	%{develname}
 Summary:	Library headers for %{name}
@@ -60,7 +55,6 @@ to incorporate %{name} into applications.
 
 #-----------------------------------------------------------------------
 
-
 %prep
 %setup -q 
 
@@ -71,8 +65,6 @@ to incorporate %{name} into applications.
 %install
 %__rm -rf %buildroot
 %makeinstall_std -C build
-
-
 
 %clean
 %__rm -rf %buildroot
