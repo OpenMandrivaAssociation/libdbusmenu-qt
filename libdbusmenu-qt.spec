@@ -10,7 +10,7 @@ Summary:	%Summary
 Name:		%name
 Version:	%version
 Release:	%release
-Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}tar..bz2
+Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://launchpad.net/libdbusmenu-qt
