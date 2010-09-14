@@ -1,5 +1,5 @@
 %define name	libdbusmenu-qt
-%define version	0.3.5
+%define version	0.6.2
 %define release	%mkrel 1
 %define Summary	 Qt implementation of the DBusMenu spec
 %define major 2
@@ -14,7 +14,7 @@ Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://launchpad.net/libdbusmenu-qt
-BuildRequires:	libqjson-devel
+BuildRequires:	qjson-devel
 BuildRequires:	qt4-devel
 BuildRequires:	cmake
 
