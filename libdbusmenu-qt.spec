@@ -1,6 +1,6 @@
 %define name	libdbusmenu-qt
 %define version	0.6.6
-%define release	%mkrel 1
+%define release	%mkrel 2
 %define Summary	 Qt implementation of the DBusMenu spec
 %define major 2
 %define libname %mklibname dbusmenu-qt %{major}
