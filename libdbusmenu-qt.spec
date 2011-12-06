@@ -1,6 +1,6 @@
 %define name	libdbusmenu-qt
-%define version	0.6.6
-%define release	%mkrel 2
+%define version	0.9.0
+%define release	1
 %define Summary	 Qt implementation of the DBusMenu spec
 %define major 2
 %define libname %mklibname dbusmenu-qt %{major}
@@ -52,6 +52,7 @@ to incorporate %{name} into applications.
 %{_libdir}/libdbusmenu-qt.so
 %{_includedir}/dbusmenu-qt/
 %{_libdir}/pkgconfig/dbusmenu-qt.pc
+%{_docdir}/dbusmenu-qt/
 
 #-----------------------------------------------------------------------
 
@@ -63,8 +64,4 @@ to incorporate %{name} into applications.
 %make
 
 %install
-%__rm -rf %buildroot
 %makeinstall_std -C build
-
-%clean
-%__rm -rf %buildroot
