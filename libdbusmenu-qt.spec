@@ -13,6 +13,7 @@ URL:		https://launchpad.net/libdbusmenu-qt
 BuildRequires:	qjson-devel
 BuildRequires:	qt4-devel
 BuildRequires:	cmake
+BuildRequires:	doxygen
 
 %description
 This library provides a Qt implementation of the DBusMenu spec.
