@@ -1,15 +1,11 @@
-%define name	libdbusmenu-qt
-%define version	0.6.6
-%define release	%mkrel 3
-%define Summary	 Qt implementation of the DBusMenu spec
 %define major 2
 %define libname %mklibname dbusmenu-qt %{major}
 %define develname %mklibname dbusmenu-qt -d
 
-Summary:	%Summary
-Name:		%name
-Version:	%version
-Release:	%release
+Summary:	Qt implementation of the DBusMenu spec
+Name:		libdbusmenu-qt
+Version:	0.9.2
+Release:	1
 Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
 License:	GPLv2
 Group:		System/Libraries
@@ -49,6 +45,7 @@ to incorporate %{name} into applications.
 
 %files -n	%{develname}
 %defattr(-,root,root)
+%doc %_docdir/dbusmenu-qt
 %{_libdir}/libdbusmenu-qt.so
 %{_includedir}/dbusmenu-qt/
 %{_libdir}/pkgconfig/dbusmenu-qt.pc
