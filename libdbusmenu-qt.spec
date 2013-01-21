@@ -5,7 +5,7 @@
 Summary:	Qt implementation of the DBusMenu spec
 Name:		libdbusmenu-qt
 Version:	0.9.2
-Release:	1
+Release:	2
 Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
 License:	GPLv2
 Group:		System/Libraries
@@ -63,10 +63,9 @@ to incorporate %{name} into applications.
 %install
 %__rm -rf %buildroot
 %makeinstall_std -C build
-
-%clean
-%__rm -rf %buildroot
-
+%if "%_lib" != "lib"
+sed -i -e "s,/lib,/%_lib,g" %buildroot%_libdir/pkgconfig/*.pc
+%endif
 
 %changelog
 * Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 0.6.6-2mdv2011.0
