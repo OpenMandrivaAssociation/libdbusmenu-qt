@@ -1,24 +1,22 @@
-%define major 2
-%define libname %mklibname dbusmenu-qt %{major}
-%define develname %mklibname dbusmenu-qt -d
+%define major	2
+%define libname	%mklibname dbusmenu-qt %{major}
+%define devname	%mklibname dbusmenu-qt -d
 
 Summary:	Qt implementation of the DBusMenu spec
 Name:		libdbusmenu-qt
 Version:	0.9.2
 Release:	2
-Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
 License:	GPLv2
 Group:		System/Libraries
-URL:		https://launchpad.net/libdbusmenu-qt
-BuildRequires:	qjson-devel
-BuildRequires:	qt4-devel
+Url:		https://launchpad.net/libdbusmenu-qt
+Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
 BuildRequires:	cmake
 BuildRequires:	doxygen
+BuildRequires:	qt4-devel
+BuildRequires:	pkgconfig(QJson)
 
 %description
 This library provides a Qt implementation of the DBusMenu spec.
-
-#-----------------------------------------------------------------------
 
 %package -n	%{libname}
 Summary:	Qt implementation of the DBUSMenu Spec
@@ -27,31 +25,24 @@ Group:		System/Libraries
 %description -n	%{libname}
 Qt implementation of the DBUSMenu Spec
 
-
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/libdbusmenu-qt.so.%{major}*
 
-#---------------------------------------------------------------------
-
-%package -n	%{develname}
+%package -n	%{devname}
 Summary:	Library headers for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n	%{develname}
+%description -n	%{devname}
 This is the libraries, include files and other resources you can use
 to incorporate %{name} into applications.
 
-%files -n	%{develname}
-%defattr(-,root,root)
+%files -n %{devname}
 %doc %_docdir/dbusmenu-qt
 %{_libdir}/libdbusmenu-qt.so
 %{_includedir}/dbusmenu-qt/
 %{_libdir}/pkgconfig/dbusmenu-qt.pc
-
-#-----------------------------------------------------------------------
 
 %prep
 %setup -q 
@@ -61,40 +52,8 @@ to incorporate %{name} into applications.
 %make
 
 %install
-%__rm -rf %buildroot
 %makeinstall_std -C build
-%if "%_lib" != "lib"
-sed -i -e "s,/lib,/%_lib,g" %buildroot%_libdir/pkgconfig/*.pc
+%if "%{_lib}" != "lib"
+sed -i -e "s,/lib,/%{_lib},g" %{buildroot}%{_libdir}/pkgconfig/*.pc
 %endif
-
-%changelog
-* Mon May 02 2011 Oden Eriksson <oeriksson@mandriva.com> 0.6.6-2mdv2011.0
-+ Revision: 661456
-- mass rebuild
-
-* Tue Jan 04 2011 John Balcaen <mikala@mandriva.org> 0.6.6-1mdv2011.0
-+ Revision: 628442
-- Update to 0.6.6
-
-* Sun Nov 28 2010 Funda Wang <fwang@mandriva.org> 0.6.4-1mdv2011.0
-+ Revision: 602230
-- new version 0.6.4
-
-* Tue Sep 14 2010 John Balcaen <mikala@mandriva.org> 0.6.2-1mdv2011.0
-+ Revision: 578128
-- Update to 0.6.2
-
-* Thu Jul 22 2010 Nicolas Lécureuil <nlecureuil@mandriva.com> 0.3.5-1mdv2011.0
-+ Revision: 556954
-- Fix typo
-- Fix source
-
-  + John Balcaen <mikala@mandriva.org>
-    - Update to 0.3.5
-    - Update URL & Source0
-
-* Sat Mar 13 2010 John Balcaen <mikala@mandriva.org> 0.3.0-1mdv2010.1
-+ Revision: 518771
-- import libdbusmenu-qt
-
 
