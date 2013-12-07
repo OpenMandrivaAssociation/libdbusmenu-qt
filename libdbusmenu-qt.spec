@@ -5,7 +5,7 @@
 Summary:	Qt implementation of the DBusMenu spec
 Name:		libdbusmenu-qt
 Version:	0.9.2
-Release:	5
+Release:	6
 License:	GPLv2
 Group:		System/Libraries
 Url:		https://launchpad.net/libdbusmenu-qt
