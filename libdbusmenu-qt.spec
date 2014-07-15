@@ -1,38 +1,36 @@
 %define major	2
-%define libname	%mklibname dbusmenu-qt %{major}
 %define devname	%mklibname dbusmenu-qt -d
+%define devname5 %mklibname dbusmenu-qt5 -d
+%define bzr 267
 
 Summary:	Qt implementation of the DBusMenu spec
 Name:		libdbusmenu-qt
-Version:	0.9.2
+Version:	0.9.3
 Release:	8
 License:	GPLv2
 Group:		System/Libraries
 Url:		https://launchpad.net/libdbusmenu-qt
+%if %bzr
+# bzr branch lp:libdbusmenu-qt
+Source0:	%{name}-%{bzr}.tar.xz
+%else
 Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
+%endif
 BuildRequires:	cmake
 BuildRequires:	doxygen
-BuildRequires:	qt4-devel
-BuildRequires:	pkgconfig(QJson)
+
+%libpackage dbusmenu-qt %{major}
+%libpackage dbusmenu-qt5 %{major}
 
 %description
 This library provides a Qt implementation of the DBusMenu spec.
 
-%package -n	%{libname}
-Summary:	Qt implementation of the DBUSMenu Spec
-Group:		System/Libraries
-
-%description -n	%{libname}
-Qt implementation of the DBUSMenu Spec
-
-%files -n %{libname}
-%{_libdir}/libdbusmenu-qt.so.%{major}*
-
 %package -n	%{devname}
 Summary:	Library headers for %{name}
 Group:		Development/C
-Requires:	%{libname} = %{version}
+Requires:	%{mklibname dbusmenu-qt %{major}} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
+BuildRequires:	qt4-devel
 
 %description -n	%{devname}
 This is the libraries, include files and other resources you can use
@@ -42,18 +40,55 @@ to incorporate %{name} into applications.
 %doc %_docdir/dbusmenu-qt
 %{_libdir}/libdbusmenu-qt.so
 %{_includedir}/dbusmenu-qt/
+%{_libdir}/cmake/dbusmenu-qt
 %{_libdir}/pkgconfig/dbusmenu-qt.pc
 
+%package -n	%{devname5}
+Summary:	Library headers for %{name}
+Group:		Development/C
+Requires:	%{mklibname dbusmenu-qt5 %{major}} = %{EVRD}
+Provides:	%{name}-devel = %{version}-%{release}
+BuildRequires:	qt5-devel
+
+%description -n	%{devname5}
+This is the libraries, include files and other resources you can use
+to incorporate %{name} into applications.
+
+%files -n %{devname5}
+%doc %_docdir/dbusmenu-qt5
+%{_libdir}/libdbusmenu-qt5.so
+%{_includedir}/dbusmenu-qt5/
+%{_libdir}/cmake/dbusmenu-qt5
+%{_libdir}/pkgconfig/dbusmenu-qt5.pc
+
 %prep
-%setup -q 
+%setup -q -n %{name}
 
 %build
-%cmake_qt4
+%cmake -DUSE_QT5:BOOL=ON
 %make
 
+cd ..
+mkdir build-qt4
+cd build-qt4
+cmake .. \
+	 -DUSE_QT4:BOOL=ON \
+	 -DCMAKE_INSTALL_PREFIX:PATH=%{_prefix} \
+	 -DCMAKE_INSTALL_LIBDIR:PATH=%{_lib} \
+	 -DLIB_INSTALL_DIR:PATH=%{_lib} \
+	 -DCMAKE_SKIP_RPATH:BOOL=ON \
+	 -DLIB_INSTALL_DIR=%{_libdir} \
+	 -DINCLUDE_INSTALL_DIR=%{_includedir}
+%make
+
+
 %install
+%makeinstall_std -C build-qt4
 %makeinstall_std -C build
 %if "%{_lib}" != "lib"
 sed -i -e "s,/lib,/%{_lib},g" %{buildroot}%{_libdir}/pkgconfig/*.pc
 %endif
+# Fix ubuntu-ish redundant doc names (no need for -doc in /usr/share/doc...)
+mv %{buildroot}%{_docdir}/libdbusmenu-qt-doc %{buildroot}%{_docdir}/dbusmenu-qt
+mv %{buildroot}%{_docdir}/libdbusmenu-qt5-doc %{buildroot}%{_docdir}/dbusmenu-qt5
 
