@@ -57,7 +57,7 @@ to incorporate %{name} into applications.
 %{_libdir}/pkgconfig/dbusmenu-qt5.pc
 
 %prep
-%setup -q -n %{name}_%{version}+%{snap}
+%setup -q -n %{name}-%{version}+%{snap}
 
 %build
 %cmake -DUSE_QT5:BOOL=ON
