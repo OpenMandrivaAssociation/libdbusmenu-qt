@@ -10,11 +10,7 @@ Release:	12.%{snap}.1
 License:	GPLv2
 Group:		System/Libraries
 Url:		https://launchpad.net/libdbusmenu-qt
-%if %snap
 Source0:	http://archive.ubuntu.com/ubuntu/pool/main/libd/%{name}/%{name}_%{version}+%{snap}.orig.tar.gz
-%else
-Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
-%endif
 BuildRequires:	cmake
 BuildRequires:	doxygen
 
@@ -36,7 +32,7 @@ This is the libraries, include files and other resources you can use
 to incorporate %{name} into applications.
 
 %files -n %{devname}
-%doc %_docdir/dbusmenu-qt
+%doc %{_docdir}/dbusmenu-qt
 %{_libdir}/libdbusmenu-qt.so
 %{_includedir}/dbusmenu-qt/
 %{_libdir}/cmake/dbusmenu-qt
@@ -61,11 +57,7 @@ to incorporate %{name} into applications.
 %{_libdir}/pkgconfig/dbusmenu-qt5.pc
 
 %prep
-%if %snap
 %setup -q -n %{name}_%{version}+%{snap}
-%else
-%setup -q -n %{name}
-%endif
 
 %build
 %cmake -DUSE_QT5:BOOL=ON
