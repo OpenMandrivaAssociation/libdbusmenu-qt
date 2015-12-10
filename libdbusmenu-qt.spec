@@ -1,18 +1,17 @@
-%define major	2
-%define devname	%mklibname dbusmenu-qt -d
+%define major 2
+%define devname %mklibname dbusmenu-qt -d
 %define devname5 %mklibname dbusmenu-qt5 -d
-%define bzr 267
+%define snap 15.10.20150604
 
 Summary:	Qt implementation of the DBusMenu spec
 Name:		libdbusmenu-qt
 Version:	0.9.3
-Release:	11
+Release:	12.%{snap}.1
 License:	GPLv2
 Group:		System/Libraries
 Url:		https://launchpad.net/libdbusmenu-qt
-%if %bzr
-# bzr branch lp:libdbusmenu-qt
-Source0:	%{name}-%{bzr}.tar.xz
+%if %snap
+Source0:	http://archive.ubuntu.com/ubuntu/pool/main/libd/%{name}/%{name}_%{version}+%{snap}.orig.tar.gz
 %else
 Source0:	http://launchpad.net/libdbusmenu-qt/trunk/%{version}/+download/%{name}-%{version}.tar.bz2
 %endif
@@ -25,7 +24,7 @@ BuildRequires:	doxygen
 %description
 This library provides a Qt implementation of the DBusMenu spec.
 
-%package -n	%{devname}
+%package -n %{devname}
 Summary:	Library headers for %{name}
 Group:		Development/C
 Requires:	%{mklibname dbusmenu-qt %{major}} = %{EVRD}
@@ -43,7 +42,7 @@ to incorporate %{name} into applications.
 %{_libdir}/cmake/dbusmenu-qt
 %{_libdir}/pkgconfig/dbusmenu-qt.pc
 
-%package -n	%{devname5}
+%package -n %{devname5}
 Summary:	Library headers for %{name}
 Group:		Development/C
 Requires:	%{mklibname dbusmenu-qt5 %{major}} = %{EVRD}
@@ -62,7 +61,11 @@ to incorporate %{name} into applications.
 %{_libdir}/pkgconfig/dbusmenu-qt5.pc
 
 %prep
+%if %snap
+%setup -q -n %{name}_%{version}+%{snap}
+%else
 %setup -q -n %{name}
+%endif
 
 %build
 %cmake -DUSE_QT5:BOOL=ON
@@ -91,4 +94,3 @@ sed -i -e "s,/lib,/%{_lib},g" %{buildroot}%{_libdir}/pkgconfig/*.pc
 # Fix ubuntu-ish redundant doc names (no need for -doc in /usr/share/doc...)
 mv %{buildroot}%{_docdir}/libdbusmenu-qt-doc %{buildroot}%{_docdir}/dbusmenu-qt
 mv %{buildroot}%{_docdir}/libdbusmenu-qt5-doc %{buildroot}%{_docdir}/dbusmenu-qt5
-
