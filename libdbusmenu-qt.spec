@@ -1,7 +1,7 @@
 %define major 2
 %define devname %mklibname dbusmenu-qt -d
 %define devname5 %mklibname dbusmenu-qt5 -d
-%define snap 15.10.20150604
+%define snap	16.04.20160218
 
 Summary:	Qt implementation of the DBusMenu spec
 Name:		libdbusmenu-qt
