@@ -44,6 +44,7 @@ Group:		Development/C
 Requires:	%{mklibname dbusmenu-qt5 %{major}} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
 BuildRequires:	qt5-devel
+BuildRequires:	cmake(Qt5Test)
 
 %description -n	%{devname5}
 This is the libraries, include files and other resources you can use
