@@ -32,6 +32,8 @@ Group:		Development/C
 Requires:	%{mklibname dbusmenu-qt5 %{major}} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
 BuildRequires:	qt5-devel
+# To make qmake happy
+BuildRequires:	qt5-platformtheme-gtk3
 BuildRequires:	cmake(Qt5Test)
 
 %description -n	%{devname5}
