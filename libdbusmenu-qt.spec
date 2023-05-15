@@ -46,6 +46,7 @@ Summary:	Library headers for %{name}
 Group:		Development/C
 Requires:	%{mklibname dbusmenu-qt6} = %{EVRD}
 Provides:	%{name}-devel = %{version}-%{release}
+BuildRequires:	cmake(Qt6)
 BuildRequires:	cmake(Qt6Core)
 BuildRequires:	cmake(Qt6DBus)
 BuildRequires:	cmake(Qt6Gui)
