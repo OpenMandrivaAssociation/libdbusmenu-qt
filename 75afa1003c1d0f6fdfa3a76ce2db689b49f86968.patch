@@ -1,0 +1,44 @@
+From 75afa1003c1d0f6fdfa3a76ce2db689b49f86968 Mon Sep 17 00:00:00 2001
+From: John Preston <johnprestonmail@gmail.com>
+Date: Wed, 5 Feb 2020 14:15:18 +0400
+Subject: [PATCH] Fix warnings in build with Qt 5.12.5.
+
+---
+ src/com.canonical.dbusmenu.xml | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/src/com.canonical.dbusmenu.xml b/src/com.canonical.dbusmenu.xml
+index b04afa6..1fb735b 100644
+--- a/src/com.canonical.dbusmenu.xml
++++ b/src/com.canonical.dbusmenu.xml
+@@ -184,7 +184,7 @@ License version 3 and version 2.1 along with this program.  If not, see
+ <!-- Functions -->
+ 
+ 		<method name="GetLayout">
+-			<annotation name="com.trolltech.QtDBus.QtTypeName.Out1" value="DBusMenuLayoutItem"/>
++			<annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="DBusMenuLayoutItem"/>
+ 			<dox:d>
+ 			  Provides the layout and propertiers that are attached to the entries
+ 			  that are in the layout.  It only gives the items that are children
+@@ -225,8 +225,8 @@ License version 3 and version 2.1 along with this program.  If not, see
+ 		</method>
+ 
+ 		<method name="GetGroupProperties">
+-			<annotation name="com.trolltech.QtDBus.QtTypeName.In0" value="QList&lt;int&gt;"/>
+-			<annotation name="com.trolltech.QtDBus.QtTypeName.Out0" value="DBusMenuItemList"/>
++			<annotation name="org.qtproject.QtDBus.QtTypeName.In0" value="QList&lt;int&gt;"/>
++			<annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="DBusMenuItemList"/>
+ 			<dox:d>
+ 			Returns the list of items which are children of @a parentId.
+ 			</dox:d>
+@@ -316,8 +316,8 @@ License version 3 and version 2.1 along with this program.  If not, see
+ 
+ <!-- Signals -->
+ 		<signal name="ItemsPropertiesUpdated">
+-			<annotation name="com.trolltech.QtDBus.QtTypeName.In0" value="DBusMenuItemList"/>
+-			<annotation name="com.trolltech.QtDBus.QtTypeName.In1" value="DBusMenuItemKeysList"/>
++			<annotation name="org.qtproject.QtDBus.QtTypeName.Out0" value="DBusMenuItemList"/>
++			<annotation name="org.qtproject.QtDBus.QtTypeName.Out1" value="DBusMenuItemKeysList"/>
+ 			<dox:d>
+ 			Triggered when there are lots of property updates across many items
+ 			so they all get grouped into a single dbus message.  The format is

@@ -1,0 +1,27 @@
+diff -up libdbusmenu-qt-0.9.3+16.04.20160218/CMakeLists.txt.omv~ libdbusmenu-qt-0.9.3+16.04.20160218/CMakeLists.txt
+--- libdbusmenu-qt-0.9.3+16.04.20160218/CMakeLists.txt.omv~	2023-05-15 15:23:45.902458308 +0200
++++ libdbusmenu-qt-0.9.3+16.04.20160218/CMakeLists.txt	2023-05-15 15:23:55.077525236 +0200
+@@ -115,7 +115,9 @@ install(FILES ${CMAKE_BINARY_DIR}/dbusme
+     )
+ 
+ add_subdirectory(src)
++if(NOT USE_QT6)
+ add_subdirectory(tests)
++endif()
+ add_subdirectory(tools)
+ 
+ if(WITH_DOC)
+diff -up libdbusmenu-qt-0.9.3+16.04.20160218/tools/CMakeLists.txt.omv~ libdbusmenu-qt-0.9.3+16.04.20160218/tools/CMakeLists.txt
+--- libdbusmenu-qt-0.9.3+16.04.20160218/tools/CMakeLists.txt.omv~	2023-05-15 15:27:03.753894697 +0200
++++ libdbusmenu-qt-0.9.3+16.04.20160218/tools/CMakeLists.txt	2023-05-15 15:27:22.234028215 +0200
+@@ -1,3 +1,5 @@
++# QJson hasn't been ported to Qt6 yet
++if(NOT USE_QT6)
+ find_package(QJSON)
+ if (QJSON_FOUND)
+     message(STATUS "QJSON found, testapp will be built")
+@@ -5,3 +7,4 @@ if (QJSON_FOUND)
+ else (QJSON_FOUND)
+     message(STATUS "QJSON not found, testapp will not be built")
+ endif (QJSON_FOUND)
++endif()

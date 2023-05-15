@@ -1,0 +1,52 @@
+From dfcdb1635eb87b226f8942d27a4cd451a405cc81 Mon Sep 17 00:00:00 2001
+From: John Preston <johnprestonmail@gmail.com>
+Date: Wed, 5 Feb 2020 14:14:44 +0400
+Subject: [PATCH] Support CMake build without CMAKE_AUTOMOC_RELAXED_MODE.
+
+---
+ src/dbusmenu_p.cpp             | 2 +-
+ src/dbusmenuexporter.cpp       | 2 +-
+ src/dbusmenuexporterdbus_p.cpp | 2 +-
+ src/dbusmenuimporter.cpp       | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/src/dbusmenu_p.cpp b/src/dbusmenu_p.cpp
+index bc84092..5a960b1 100644
+--- a/src/dbusmenu_p.cpp
++++ b/src/dbusmenu_p.cpp
+@@ -91,4 +91,4 @@ void DBusMenu::deleteMe()
+     delete this;
+ }
+ 
+-#include "dbusmenu_p.moc"
++#include "moc_dbusmenu_p.cpp"
+diff --git a/src/dbusmenuexporter.cpp b/src/dbusmenuexporter.cpp
+index f25718d..f30ce11 100644
+--- a/src/dbusmenuexporter.cpp
++++ b/src/dbusmenuexporter.cpp
+@@ -503,4 +503,4 @@ QString DBusMenuExporter::status() const
+     return d->m_dbusObject->status();
+ }
+ 
+-#include "dbusmenuexporter.moc"
++#include "moc_dbusmenuexporter.cpp"
+diff --git a/src/dbusmenuexporterdbus_p.cpp b/src/dbusmenuexporterdbus_p.cpp
+index 006eec6..c9707e0 100644
+--- a/src/dbusmenuexporterdbus_p.cpp
++++ b/src/dbusmenuexporterdbus_p.cpp
+@@ -183,4 +183,4 @@ QString DBusMenuExporterDBus::status() const
+ }
+ 
+ 
+-#include "dbusmenuexporterdbus_p.moc"
++#include "moc_dbusmenuexporterdbus_p.cpp"
+diff --git a/src/dbusmenuimporter.cpp b/src/dbusmenuimporter.cpp
+index 39f5995..ce6ef18 100644
+--- a/src/dbusmenuimporter.cpp
++++ b/src/dbusmenuimporter.cpp
+@@ -582,4 +582,4 @@ QIcon DBusMenuImporter::iconForName(const QString &/*name*/)
+     return QIcon();
+ }
+ 
+-#include "dbusmenuimporter.moc"
++#include "moc_dbusmenuimporter.cpp"
